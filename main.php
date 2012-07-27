@@ -6,17 +6,25 @@ $default_header = '
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>header</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PAM lab</title>
+    <link rel = "stylesheet" type = "text/css" href = "style.css"/>
+
+  <title> Pamlab quest</title>
 </head> 
 ';
 
 $default_body = '
 <body>
-  <h1> welcome to hack quest </h1>
-  <br>
-  description
-  <br>
+<div id = "menu">
+    <ul>
+        <li><a id = "main" href = "./index.php"> Главная</a></li>
+        <li><a id = "quests" href = "./quests.php"> Квесты</a></li>
+        <li><a id = "results" href = "./results.php">Результаты</a></li>
+	<li><a id = "contacts" href = "./quest_owners.php"> Контакты </a></li>
+    </ul>
+</div>
+ 
 ';
 
 $default_footer = '

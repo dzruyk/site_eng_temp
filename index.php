@@ -1,10 +1,11 @@
 <?
 require("common.php");
 require("main.php");
+require("auth.php");
 
 D("starting...<br>\n");
 
-$user = new HUser();
+#$user = new HUser();
 
 $main = new MainPage();
 

@@ -1,7 +1,7 @@
 <?php
 
 class HUser {
-  public function HUser 
+  public function HUser()
   {
     //new db connection init
     //
