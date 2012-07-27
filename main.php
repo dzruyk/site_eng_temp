@@ -21,6 +21,37 @@ $default_header = '
 	<li><a id = "contacts" href = "./quest_owners.php"> Контакты </a></li>
     </ul>
 </div>
+
+<div id = "wrapper">
+
+  <div id = "sidebar">
+    <br>
+    <ul>
+    <li> <h2> Ссылки </h2>
+      <ul>
+      <li> one</li>
+      <li> two </li>
+      <li> three </li>
+      </ul>
+    </ul>
+  </div>
+
+  <div id = "page-wrapper">
+    <div id = "page">
+    <div id = "banner"> <h1> pamlab quest </h1></div>
+      <div class="narrowcolumn-wrapper">
+        <div class="narrowcolumn">
+	  <div class="posts-wrapper">
+	    <div class="posts">
+	    <h2> short description</h2>
+	    <br>
+	    bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
 ';
 
 $default_body = '
@@ -31,12 +62,14 @@ $default_footer = '
   <div id = "footer">
     sometext
   </div>
+</div>
 
 </body>
 </html>
 ';
 
 class MainPage {
+
   private $header;
   private $body;
   private $footer;
@@ -85,12 +118,7 @@ class MainPage {
   }
 }
 
-class sql_handler {
-
-}
-
 class checker {
-
 
 }
 

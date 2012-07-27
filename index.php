@@ -17,6 +17,7 @@ if ($UseAuthSystem == 1) {
 
   if (isset($_POST['get_passwd'])) {
     $user = new HUser();
+
     $login = FilterSQL($_POST['login']);
     $password = FilterSQL($_POST['password']);
     $ret = $user->auth($login, $password);
