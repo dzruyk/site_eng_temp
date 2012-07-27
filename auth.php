@@ -9,7 +9,8 @@ class HUser {
 
   public function auth($user, $pass)
   {
-
+    //stub
+    return TRUE;
   }
 }
 

@@ -7,14 +7,11 @@ $default_header = '
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>PAM lab</title>
     <link rel = "stylesheet" type = "text/css" href = "style.css"/>
 
   <title> Pamlab quest</title>
 </head> 
-';
 
-$default_body = '
 <body>
 <div id = "menu">
     <ul>
@@ -24,13 +21,16 @@ $default_body = '
 	<li><a id = "contacts" href = "./quest_owners.php"> Контакты </a></li>
     </ul>
 </div>
- 
+';
+
+$default_body = '
+
 ';
 
 $default_footer = '
-  <footer>
-  bye bye
-  </footer>
+  <div id = "footer">
+    sometext
+  </div>
 
 </body>
 </html>
