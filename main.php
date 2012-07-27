@@ -57,6 +57,7 @@ class MainPage {
 
   public function print_footer() 
   {
+    D("printing MainPage footer...<br>\n");
     echo $this->footer;
   }
 
@@ -80,14 +81,11 @@ class sql_handler {
 
 }
 
-function authorisation() {
-
-}
-
 class checker {
 
 
 }
+
 
 ?>
 
