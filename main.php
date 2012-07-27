@@ -1,19 +1,79 @@
 <?php
-class main_page {
-	public function init() {}
 
-	public function print_header() {}
+include_once("common.php");
 
-	public function print_body() {}
+$default_header = '
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>header</title>
+</head> 
+';
 
-	public function print_footer() {}
+$default_body = '
+<body>
+  <h1> welcome to hack quest </h1>
+  <br>
+  description
+  <br>
+';
 
-	public function set_header() {}
+$default_footer = '
+  <footer>
+  bye bye
+  </footer>
 
-	public function set_body() {}
+</body>
+</html>
+';
+
+class MainPage {
+  private $header;
+  private $body;
+  private $footer;
+
+  public function __construct() 
+  {
+    global $default_header, $default_body,
+        $default_footer;
+    D("MainPage constructor<br>\n");
+    $this->header = $default_header;
+    $this->body = $default_body;
+    $this->footer = $default_footer;
+  }
+
+  public function print_header() 
+  {
+    D("printing MainPage header...<br>\n");
+    echo $this->header;
+  }
+
+  public function print_body() 
+  {
+    D("printing MainPage body...<br>\n");
+    echo $this->body;
+  }
+
+  public function print_footer() 
+  {
+    echo $this->footer;
+  }
+
+  public function set_header($str) 
+  {
+    $this->header = $str;
+  }
+
+  public function set_body() 
+  {
+    $this->header = $str;
+  }
 	
-	public function set_footer() {}
-
+  public function set_footer()
+  {
+    $this->header = $str;
+  }
 }
 
 class sql_handler {
