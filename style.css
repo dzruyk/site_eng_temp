@@ -9,7 +9,7 @@ body{
 	font-size: 14px;
 	text-align: center;
 	vertical-align: top;
-	background: #9ccfe6; /*#5e889b url(../images/bg_body.gif) repeat-x;*/
+	background: #9ccfe6; 
 	/*background: #acad7e;*/
 	color: #000;
 }
@@ -120,7 +120,7 @@ input#author, input#email, input#url{
 	margin: 0 2px 0 0;
 	text-align: left;
 	vertical-align: top;
-	background: #2a201c url(../images/bg_tab_right.gif) no-repeat right top;
+	background: #2a201c;
 }
 
 #menu ul li h1{
@@ -134,7 +134,6 @@ input#author, input#email, input#url{
 	text-decoration: none;
 	text-align: center;
 	vertical-align: top;
-	background: url(../images/bg_tab_left.gif) no-repeat;
 	color: #fff;
 }
 
@@ -142,59 +141,57 @@ input#author, input#email, input#url{
 	clear: both;
 	float: left;
 	width: 858px;
-	background: #362b26 url(../images/bg_wrapper.gif) no-repeat;
+	background: #362b26;
 	color: #a98a7b;
 }
 
 #page-wrapper{
 	float: left;
-	margin: 10px 0 0 10px;
+	margin: 10px 10px 0 10px;
 	padding: 0 0 10px;
 	display: inline; /* prevent margin doubling in IE 6 */
-	width: 668px;
-	background: #e5e5d4 url(../images/bg_page_wrapper.gif) no-repeat left bottom;
+	width: 658px;
+	background: #e5e5d4;
 	color: #000;
 }
 
 #page{
 	float: left;
 	padding: 0 10px;
-	background: url(../images/bg_page.gif) no-repeat;
 }
 
 #banner{
 	float: left;
-	margin: 10px 0 0;
+	margin: 50px 0 50px;
 	width: 648px;
-	height: 150px;
-	background: #d0d0d1 url(../images/banner_mate2.jpg) no-repeat;
+	/*height: 150px;
+	background: #d0d0d1;*/
+	text-align: center;
 }
 
 #banner h1 {
-	display: none;	
+	display: none;
 }
 
 .narrowcolumn-wrapper{
 	float: left;
 	width: 648px;
 	margin: 10px 0 0;
-	background: #d0d0b1 url(../images/bg_narrowcolumn_wrapper.gif) no-repeat left bottom;
+	background: #d0d0b1;
 }
 
 .narrowcolumn{
 	float: left;
 	width: 648px;
-	background:url(../images/bg_narrowcolumn.gif) no-repeat;
 }
 
 .posts-wrapper{
 	margin: 10px;
-	background: #fff url(../images/bg_posts_wrapper.gif) no-repeat left bottom;
 }
 
 .posts{
 	padding: 0 20px 20px;
-	background: url(../images/bg_posts.gif) no-repeat;
+	background: #ffffff;
 }
 
 .posts h2{
@@ -337,7 +334,7 @@ input#author, input#email, input#url{
 	float: left;
 	width: 858px;
 	font-size: 12px;
-	background: #362b26 url(../images/bg_footer.gif) no-repeat left bottom;
+	background: #362b26;
 	color: #a98a7b;
 }
 
@@ -351,7 +348,3 @@ input#author, input#email, input#url{
 	line-height: 24px;
 }
 
-#banner {
-	background: #FFFFFF;
-	color:	#000000;
-}

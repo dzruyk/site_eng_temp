@@ -1,6 +1,6 @@
 <?php
 
-$IS_DEBUG = 0;
+$IS_DEBUG = 1;
 
 function D($str) {
   global $IS_DEBUG;

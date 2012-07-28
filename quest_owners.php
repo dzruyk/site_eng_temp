@@ -8,7 +8,7 @@ require("main.php");
  *
  */
 
-D("building result table...<br>\n");
+D("quest owners...<br>\n");
 
 $main = new MainPage();
 
