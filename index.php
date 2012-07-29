@@ -17,12 +17,8 @@ if ($UseAuthSystem == 1) {
   //check cookies
   //if set and valid print user name, points, some other info
 
-
-
   $main->print_auth_bar();
 }
-
-
 
 $main->print_body();
 
@@ -30,7 +26,6 @@ $payload = '
 <h2> hello, im your payload </h2>
 <br>
 ';
-
 
 $main->set_payload($payload);
 $main->print_payload();

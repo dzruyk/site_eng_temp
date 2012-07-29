@@ -1,9 +1,14 @@
 <?php
-require("huser.php");
-require("common.php");
+include_once("huser.php");
+include_once("common.php");
+include_once("config.php");
+include_once("main.php");
+include_once("sql.php");
 
 D("auth.php...<br>\n");
 
+
+// Try to auth user.
 if (isset($_POST['get_passwd'])) {
   D("getting login and password...<br>\n");
   $user = new HUser();
@@ -20,7 +25,7 @@ if (isset($_POST['get_passwd'])) {
     ;
   }
 } else {
-  D("cant get post value...<br>\n");
+  D("can't get post value...<br>\n");
 }
 
 $main = new MainPage();
@@ -28,5 +33,24 @@ $main = new MainPage();
 $main->print_header();
 $main->print_menu();
 
+$stub = '
+    <div id = "sidebar">
+      <br>
+      <br>
+    </div>
+';
+
+$main->set_auth_bar($stub);
+
+$main->print_auth_bar();
+
+$main->print_body();
+
+$payload = $default_auth_form;
+
+$main->set_payload($payload);
+
+$main->print_payload();
+$main->print_footer();
 
 ?>
