@@ -19,6 +19,7 @@ $default_header = '
 </head> 
 
 <body>
+<br><br>
 ';
 
 $default_menu = '
