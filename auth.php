@@ -7,6 +7,7 @@ include_once("sql.php");
 
 D("auth.php...<br>\n");
 
+$error = '';
 
 // Try to auth user.
 if (isset($_POST['get_passwd'])) {
@@ -22,6 +23,11 @@ if (isset($_POST['get_passwd'])) {
     //set cookie; redirrect
   } else {
     //user or password invalid
+    $error = $error . '
+    <br>
+    Имя пользователя/пароль, который вы ввели неверен
+    <br>
+    ';
     ;
   }
 } else {
@@ -46,7 +52,7 @@ $main->print_auth_bar();
 
 $main->print_body();
 
-$payload = $default_auth_form;
+$payload = $error . $default_auth_form;
 
 $main->set_payload($payload);
 

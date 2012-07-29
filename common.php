@@ -1,6 +1,6 @@
 <?php
 
-$IS_DEBUG = 1;
+include_once("config.php");
 
 function D($str) {
   global $IS_DEBUG;
@@ -34,6 +34,30 @@ $default_menu = '
 <div id = "wrapper">
 ';
 
+$default_register_form = '
+      <form method="post" action="register.php">
+      <br>
+      Логин:
+      <br>
+      <input type="text" name="login" value="">
+      <br>
+      Пароль:
+      <br>
+      <input type="password" name="password" value="">
+      <br>
+      Подтвердите пароль
+      <br>
+      <input type="password" name="confirm_password" value="">
+      <br>
+      Ваш электронный ящик
+      <br>
+      <input type="text" name="email" value="">
+      <br><br>
+      <input type="submit" name="register" value="Зарегистрироваться">
+      </form>
+      <br>
+';
+
 $default_auth_form = '
       <form method="post" action="auth.php">
       <br>
@@ -47,6 +71,9 @@ $default_auth_form = '
       <br>
       <input type="submit" name="get_passwd" value="Зайти">
       </form>
+      <br>
+      <a href = "./register.php"> Зарегистрироваться </a>
+      <br>
 ';
 
 
