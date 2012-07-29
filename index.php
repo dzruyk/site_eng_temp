@@ -14,22 +14,12 @@ $main->print_menu();
 
 //auth process
 if ($UseAuthSystem == 1) {
+  //check cookies
+  //if set and valid print user name, points, some other info
 
-  if (isset($_POST['get_passwd'])) {
-    $user = new HUser();
 
-    $login = FilterSQL($_POST['login']);
-    $password = FilterSQL($_POST['password']);
-    $ret = $user->auth($login, $password);
-    if ($ret == TRUE) {
-      //TODO:print user name, points, some other info
-    } else {
-      //we need auth request, printing default auth_bar
-      ;
-    }
 
-    $main->print_auth_bar();
-  }
+  $main->print_auth_bar();
 }
 
 
