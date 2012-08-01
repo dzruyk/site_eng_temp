@@ -1,10 +1,12 @@
 <?php
+include_once("common.php");
 
 class HUser {
   private $db;
 
   public function HUser()
   {
+    D("Huser init<br>\n");
     global  $DB_name, $DB_type, $DB_user,
     $DB_password, $DB_host, $DB_port;
 
@@ -18,11 +20,15 @@ class HUser {
 
   public function auth($user, $pass)
   {
-    //stub
+    
     return TRUE;
   }
 
   public function hasRole($roleNeed)
+  {
+
+  }
+  public function getInfoHTML()
   {
 
   }

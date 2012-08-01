@@ -1,8 +1,8 @@
 <?
-require("huser.php");
-require("common.php");
-require("config.php");
-require("main.php");
+include_once("huser.php");
+include_once("common.php");
+include_once("config.php");
+include_once("main.php");
 
 D("index.php...<br>\n");
 

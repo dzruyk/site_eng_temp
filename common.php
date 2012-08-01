@@ -2,7 +2,8 @@
 
 include_once("config.php");
 
-function D($str) {
+function D($str) 
+{
   global $IS_DEBUG;
   if ($IS_DEBUG == 1)
     echo "===$str";
