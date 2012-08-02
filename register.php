@@ -1,7 +1,7 @@
 <?php
 
 include_once("common.php");
-include_once("sql.php");
+include_once("huser.php");
 include_once("main.php");
 
 D("register.php...<br>\n");
