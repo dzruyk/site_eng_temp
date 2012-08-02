@@ -1,27 +1,42 @@
 <?php
 
 include_once("common.php");
+include_once("sql.php");
 include_once("main.php");
 
 D("register.php...<br>\n");
 
+$error = '';
 // Try to register user.
 
 if (isset($_POST['register'])) {
   D("getting login, password and mail...<br>\n");
+  
+  $user = new HUser();
 
   $login = FilterSQL($_POST['login']);
   $password = FilterSQL($_POST['password']);
   $email = FilterSQL($_POST['email']);
 
   D("login = $login, pass = $password, mail = $email<br>\n");
-  //create db connection, try to find user with same login
-  //error if find(errmsg set), register otherwise(and forward to index.php)
 
+  $ret = $user->addUser($login, $password, $email);
+  if ($ret == 1) {
+    $error = $error . '
+    <br>
+    Имя пользователя занято
+    <br>
+    ';
+  } else if ($ret == 2) {
+    $error = $error . '
+    <br>
+    Ощибка, попробуйте ещё раз
+    <br>
+    ';
+  }
 } else {
   D("can't get post value...<br>\n");
 }
-
 
 $main = new MainPage();
 

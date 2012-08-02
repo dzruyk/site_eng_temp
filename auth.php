@@ -19,7 +19,8 @@ if (isset($_POST['get_passwd'])) {
   D("login = $login, pass = $password<br>\n");
 
   $ret = $user->auth($login, $password);
-  if ($ret == TRUE) {
+  if ($ret == 0) {
+    D("auth complete<br>\n");
     //set cookie; redirrect
   } else {
     //user or password invalid
@@ -30,6 +31,8 @@ if (isset($_POST['get_passwd'])) {
     ';
     ;
   }
+  $user->destructor();
+
 } else {
   D("can't get post value...<br>\n");
 }

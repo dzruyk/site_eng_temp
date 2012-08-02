@@ -49,7 +49,7 @@ class baseCon {
       $this->connection = $con;
       break;
     default:
-    	D("this cannot happen!<br>\n");
+    	D("DB_connect: this cannot happen!<br>\n");
 	die();
     };
   }
@@ -66,10 +66,10 @@ class baseCon {
         $res = pg_query($this->connection, $sql);
       break;
       default:
-        D("this cannot happen!<br>\n");
+        D("execute:this cannot happen!<br>\n");
         die();
     }
-    $response = new baseResponse($type, $res);
+    $response = new baseResponse($this->DB_type, $res);
 
     return $response;
   }
@@ -84,7 +84,7 @@ class baseCon {
         pg_close($this->connection);
         break;
       default:
-        D("this cannot happen!<br>\n");
+        D("DB_close: this cannot happen!<br>\n");
         die();
     }
   }
@@ -92,20 +92,42 @@ class baseCon {
 
 class baseResponse {
   private $resp;
-  private $type;
+  private $DB_type;
 
-  public function baseResponse()
+  public function baseResponse($DB_type, $res)
   {
-
-
+    switch ($DB_type) {
+    case "postgres":
+      $this->DB_type = $DB_type;
+      $this->resp = $res;
+      break;
+    default:
+        D("RESP_init: this cannot happen!<br>\n");
+        die();
+    }
   }
 
-  public function fetchRow($res)
+  public function recordCount()
   {
+    switch ($this->DB_type) {
+    case "postgres":
+      return pg_num_rows($this->resp);
+    default:
+        D("RESP_Cnt: this cannot happen$this->DB_type! <br>\n");
+        die();
+    }
+  }
 
-
+  public function fetchRow()
+  {
+    switch ($this->DB_type) {
+    case "postgres":
+      return pg_fetch_row($this->resp);
+    default:
+        D("RESP_fetch: this cannot happen$this->DB_type! <br>\n");
+        die();
+    }
   }
 }
-
 
 ?>
