@@ -7,11 +7,9 @@ include_once("sql.php");
 
 D("auth.php...<br>\n");
 
-$error = '';
-
-// Try to auth user.
-if (isset($_POST['get_passwd'])) {
-  D("getting login and password...<br>\n");
+function tryAuth()
+{
+  $error = '';
   $user = new HUser();
 
   $login = FilterSQL($_POST['login']);
@@ -24,7 +22,7 @@ if (isset($_POST['get_passwd'])) {
     //set cookie; redirrect
   } else {
     //user or password invalid
-    $error = $error . '
+    $error = '
     <br>
     Имя пользователя/пароль, который вы ввели неверен
     <br>
@@ -32,7 +30,20 @@ if (isset($_POST['get_passwd'])) {
     ;
   }
   $user->destructor();
+  return 'all_ok';
+}
 
+$error = '';
+$success = FALSE;
+
+// Try to auth user.
+if (isset($_POST['get_passwd'])) {
+  D("getting login and password...<br>\n");
+  $ret = tryAuth();
+  if ($ret == 'all_ok')
+    $success = TRUE;
+  else
+    $error = $ret;
 } else {
   D("can't get post value...<br>\n");
 }
@@ -55,7 +66,10 @@ $main->print_auth_bar();
 
 $main->print_body();
 
-$payload = $error . $default_auth_form;
+if ($error != '')
+  $payload = $error . $default_auth_form;
+else
+  $payload = $default_auth_form;
 
 $main->set_payload($payload);
 

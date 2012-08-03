@@ -27,7 +27,8 @@ class HUser {
   public function addUser($uname, $pass, $mail)
   {
     
-
+    
+  return 2;
   }
 
   public function deleteUser($uname)
