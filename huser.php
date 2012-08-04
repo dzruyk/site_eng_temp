@@ -26,9 +26,19 @@ class HUser {
   //2 otherwise
   public function addUser($uname, $pass, $mail)
   {
-    
-    
-  return 2;
+    $resp = $this->db->execute("SELECT * FROM users WHERE \
+    uname='" . $uname . "'");
+
+    if ($resp-> recordCount() > 0)
+      return 1;
+
+    $resp = $this->db->execute("INSERT INTO users \
+        (uname, pass, email, score) VALUES ('" . $uname . "', '".
+        $pass, "', '" . $mail . "', 0"); 
+
+    D("addUser resp is $resp");  
+
+    return 0;
   }
 
   public function deleteUser($uname)
@@ -49,7 +59,8 @@ class HUser {
         strlen($pass) == 0)
       return 1;
 
-    $resp = $this->db->execute("SELECT pass FROM users where uname='" . $user. "'");
+    $resp = $this->db->execute("SELECT pass FROM users where uname='" 
+        . $user. "'");
     
     if ($resp->recordCount() < 1) {
       D("no records!<br>\n");

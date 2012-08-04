@@ -8,7 +8,7 @@ $DB_name = "hackquest";
 // type can be only postgres now
 $DB_type = "postgres";
 $DB_user = "ruyk";
-$DB_password = "";
+$DB_password = "ruyk";
 $DB_host = "127.0.0.1";
 $DB_port = "5432";
 
