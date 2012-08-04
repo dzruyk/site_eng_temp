@@ -22,12 +22,13 @@ function tryAuth()
     //set cookie; redirrect
   } else {
     //user or password invalid
+    D("user or pass is invalid<br>\n");
     $error = '
     <br>
-    Имя пользователя/пароль, который вы ввели неверен
+    <h2> Имя пользователя/пароль, который вы ввели неверен </h2>
     <br>
     ';
-    ;
+    return $error;
   }
   $user->destructor();
   return 'all_ok';

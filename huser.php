@@ -26,17 +26,19 @@ class HUser {
   //2 otherwise
   public function addUser($uname, $pass, $mail)
   {
-    $resp = $this->db->execute("SELECT * FROM users WHERE \
+    $resp = $this->db->execute("SELECT * FROM users WHERE 
     uname='" . $uname . "'");
 
     if ($resp-> recordCount() > 0)
       return 1;
 
-    $resp = $this->db->execute("INSERT INTO users \
-        (uname, pass, email, score) VALUES ('" . $uname . "', '".
-        $pass, "', '" . $mail . "', 0"); 
+    $crypt_pass = md5($pass);
 
-    D("addUser resp is $resp");  
+    $resp = $this->db->execute("INSERT INTO users 
+        (uname, pass, email, score) VALUES ('" . $uname . "', '".
+        $crypt_pass . "', '" . $mail . "', 0)"); 
+
+    D("addUser resp is $resp->recordCount()");  
 
     return 0;
   }
@@ -75,14 +77,24 @@ class HUser {
     return 2;
   }
 
+  public function setUserCookie()
+  {
+    //FIXME: STUB
+  }
+
+  public function checkUserCookie()
+  {
+    //FIXME: STUB
+  }
+
   public function hasRole($roleNeed)
   {
-
+    //FIXME: STUB
   }
 
   public function getInfoHTML()
   {
-
+    //FIXME: STUB
   }
   
   //FIXME: this function rly usefull?
