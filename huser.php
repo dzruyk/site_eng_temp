@@ -77,12 +77,12 @@ class HUser {
     return 2;
   }
 
-  public function setUserCookie()
+  public function setUserCookie($user, $pass)
   {
     //FIXME: STUB
   }
 
-  public function checkUserCookie()
+  public function checkUserCookie($user, $pass)
   {
     //FIXME: STUB
   }
