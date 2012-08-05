@@ -48,11 +48,11 @@ class HUser {
     //FIXME: STUB
   }
 
+  //try to auth user, if success - sets auth cookie
   //return:
   //0 if all ok
   //1 if uname or pass dont set
   //2 if user not exist or pass incorrect
-  
   public function auth($user, $pass)
   {
     $crypt_pass = md5($pass);
@@ -71,8 +71,10 @@ class HUser {
 
     $result = $resp->fetchRow();
     D("md5 from db = $result[0]<br>\n");
-    if ($result[0] == $crypt_pass)
+    if ($result[0] == $crypt_pass) {
+      $this->setUserCookie($user, $pass);
       return 0;
+    }
 
     return 2;
   }

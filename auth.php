@@ -19,7 +19,11 @@ function tryAuth()
   $ret = $user->auth($login, $password);
   if ($ret == 0) {
     D("auth complete<br>\n");
-    //set cookie; redirrect
+    //redirect to main page
+    echo '<script type="text/javascript">
+    window.location.pathname = \'./index.php\'
+    </script>
+    ';
   } else {
     //user or password invalid
     D("user or pass is invalid<br>\n");

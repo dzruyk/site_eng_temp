@@ -37,6 +37,27 @@ $default_menu = '
 ';
 
 $default_register_form = '
+<script type="text/javascript">
+function validate() {
+	var pass = document.getElementById(\'password\');
+	var pass2 = document.getElementById(\'confirm_password\');
+
+	var submit = document.getElementById(\'register\');
+
+	var err = document.getElementById(\'error\');
+
+	if (pass.value == pass2.value && pass.value.length > 0) {
+		//all ok then
+		submit.disabled = false;
+		err.innerHTML = \'\';
+	} else {
+		//error
+		submit.disabled = true;
+		err.innerHTML = "Пароли не совпадают";
+	}
+}
+</script>
+
       <form method="post" action="register.php">
       <br>
       Логин:
@@ -45,17 +66,19 @@ $default_register_form = '
       <br>
       Пароль:
       <br>
-      <input type="password" name="password" value="">
+      <input type="password" id="password" name="password" value="" onchange=\'validate()\'>
       <br>
       Подтвердите пароль
       <br>
-      <input type="password" name="confirm_password" value="">
+      <input type="password" id="confirm_password" name="confirm_password" value="" onchange=\'validate()\'>
+      <br>
+      <b><span id="error"> </span></b>
       <br>
       Ваш электронный ящик
       <br>
       <input type="text" name="email" value="">
       <br><br>
-      <input type="submit" name="register" value="Зарегистрироваться">
+      <input type="submit" id="register" name="register" value="Зарегистрироваться" disabled>
       </form>
       <br>
 ';
