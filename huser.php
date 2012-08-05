@@ -38,7 +38,7 @@ class HUser {
         (uname, pass, email, score) VALUES ('" . $uname . "', '".
         $crypt_pass . "', '" . $mail . "', 0)"); 
 
-    D("addUser resp is $resp->recordCount()");  
+    D("addUser resp is " . $resp->recordCount());
 
     return 0;
   }
@@ -72,7 +72,8 @@ class HUser {
     $result = $resp->fetchRow();
     D("md5 from db = $result[0]<br>\n");
     if ($result[0] == $crypt_pass) {
-      $this->setUserCookie($user, $pass);
+      D("passwords match<br>\n");
+      $this->setUserCookie($user, $crypt_pass);
       return 0;
     }
 
@@ -81,7 +82,36 @@ class HUser {
 
   public function setUserCookie($user, $pass)
   {
-    //FIXME: STUB
+    $resp = $this->db->execute("SELECT uid FROM users WHERE  uname='" 
+        . $user. "' AND pass ='" . $pass . "'");
+    
+    if ($resp->recordCount() < 1) {
+      D("cant find this user in table<br>\n");
+      //we havent this user in table
+      return;
+    }
+    $resp = $resp->fetchRow();
+    $uid = $resp[0];
+
+    $expire = time() + 60 * 60 * 24 * 30;
+
+    $ncookie = md5($user) + md5($pass) + md5($expire) + $uid;
+
+    $ret = setcookie("uid", $ncookie, $expire);
+    if ($ret == FALSE) {
+      D("cant set cookie, just quit<br>\n");
+      return;
+    }
+
+    //FIXME: now we not check db errors
+
+    //remove previosly set cookies
+    $this->db->execute("DELETE FROM cookies WHERE uid='" . $uid . "'");
+
+    //add new
+
+    $this->db->execute("INSERT INTO cookies (uid, cookie) VALUES ('" .
+        $uid . "', '" . $ncookie . "')");
   }
 
   public function checkUserCookie($user, $pass)
