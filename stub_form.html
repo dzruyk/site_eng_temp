@@ -5,13 +5,11 @@ function validate() {
 	var pass2 = document.getElementById('validate_pass');
 
 	var submit = document.getElementById('get_passwd');
-
-	if (pass == pass2) {
-		alert('haha');
+	
+	if (pass.value == pass2.value && pass.value.length > 0) {
 		//all ok then
 		submit.disabled = false;
 	} else {
-		alert('no');
 		//error
 		submit.disabled = true;
 	}
@@ -20,7 +18,7 @@ function validate() {
 </script>
       
       
-      <form name= 'form' method="post" action="auth.php">
+      <form method="post" action="auth.php">
       <br>
       Логин:
       <br>
@@ -28,11 +26,13 @@ function validate() {
       <br>
       Пароль:
       <br>
-      <input type="password" id="password" name="password" value="" onchange='validate()'>
+      <input type="password" id="password" name="password" value="" onchange='validate()'
+      onkeypress='validate()'>
       <br>
       Повторите пароль
       <br>
-      <input type="password" id="validate_pass" name="validate_pass" value="" onchange='validate()'>
+      <input type="password" id="validate_pass" name="validate_pass" value="" onchange='validate()'
+      onkeypress='validate()'>
       <br>
       <input type="submit" id="get_passwd" name="get_passwd" value="Зайти" disabled="disabled">
       </form>
