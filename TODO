@@ -9,4 +9,5 @@ Need to do:
 12) must check is cookie unique(we need to check hash collisions)
 13) validate quest function
 14) simple test quest tasks need to add
+15) result table build function
 
