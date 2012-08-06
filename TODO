@@ -1,14 +1,13 @@
 Need to do:
 1) sql filters
 2) some classess
-3) UI
 4) main context
 5) and many many more...
 
-6) JS validation mail and password with confirm password
 7) in final realise need to send confirm message on registered user email
 8) SQL INJECTION WARNING!
 9) all messages must be declared in separated file(mb by DEFINE statesment)
 10) check auth cookie
 11) debug messages and cookies?
+12) must check is cookie unique(we need to check hash collisions)
 

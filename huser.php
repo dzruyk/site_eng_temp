@@ -95,13 +95,15 @@ class HUser {
 
     $expire = time() + 60 * 60 * 24 * 30;
 
-    $ncookie = md5($user) + md5($pass) + md5($expire) + $uid;
+    $ncookie = md5($user + md5($pass) + md5($expire));
 
     $ret = setcookie("uid", $ncookie, $expire);
     if ($ret == FALSE) {
       D("cant set cookie, just quit<br>\n");
       return;
     }
+
+    D("cookie is set and its val = $ncookie");
 
     //FIXME: now we not check db errors
 
