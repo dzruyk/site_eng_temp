@@ -2,11 +2,43 @@
 
 include_once("common.php");
 
-function FilterSQL($str)
+//get from BASE
+/* ***********************************************************************
+ * Function: XSSPrintSafe()
+ *
+ * @doc Converts unsafe html special characters to printing safe
+ *      equivalents so we can safetly print them.
+ *
+ ************************************************************************/
+function XSSPrintSafe($item)
 {
-  D("FilterSQL STUB! FIXME!<br>\n");
-  
-  return $str;
+   D("xss print safe<br>\n");
+   /* Determine whether a variable is set */        
+   if (!isset($item))
+      return $item;
+
+   /* Recursively convert array elements -- nikns */
+   if (is_array($item)) {
+      for ($i = 0; $i < count($item); $i++)
+          $item[$i] = XSSPrintSafe($item[$i]);
+      return $item;
+   }
+
+   return htmlspecialchars($item);
+}
+
+//Get from BASE source
+function FilterSQL($item)
+{
+   /* Recursively filter array elements -- nikns */
+  if (is_array($item)) {
+    for ($i = 0; $i < count($item); $i++)
+      $item[$i] = XSSPrintSafe($item[$i]);
+    return $item;
+  }
+  //FIXME: is rly good?
+  $item = addslashes($item);
+  return $item;
 }
 
 class baseCon {

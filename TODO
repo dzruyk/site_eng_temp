@@ -6,8 +6,7 @@ Need to do:
 
 7) in final realise need to send confirm message on registered user email
 8) SQL INJECTION WARNING!
-9) all messages must be declared in separated file(mb by DEFINE statesment)
-10) check auth cookie
-11) debug messages and cookies?
 12) must check is cookie unique(we need to check hash collisions)
+13) validate quest function
+14) simple test quest tasks need to add
 

@@ -140,14 +140,18 @@ class HUser {
   // return str with description otherwise
   public function getInfoHTML($uid)
   {
-    $this->db->execute("SELECT uname, score FROM users WHERE uid='" . $uid . "'");
+    $resp = $this->db->execute("SELECT uname, score FROM users WHERE uid='" . $uid . "'");
     if ($resp->recordCount() < 1) {
       D("get info HTML failed! this is should not happened<br>\n");
       return FALSE;
     }
     $result = $resp->fetchRow();
 
-    return "<br>$result[0] <br> score=$result[1]";
+    return "<br>
+    <ul>
+    <li> <h2>Здравствуй, $result[0]</h2>
+    <li> <h2> Твой счёт $result[1] </h2>
+    </ul>";
   }
   
   //FIXME: this function rly usefull?

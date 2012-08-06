@@ -4,12 +4,13 @@ include_once("common.php");
 include_once("config.php");
 include_once("main.php");
 include_once("sql.php");
+include_once("strings.php");
 
 D("auth.php...<br>\n");
 
 function tryAuth()
 {
-  $error = '';
+  global $error_pass_incorrect;
   $user = new HUser();
 
   $login = FilterSQL($_POST['login']);
@@ -20,28 +21,29 @@ function tryAuth()
   if ($ret == 0) {
     D("auth complete<br>\n");
     //redirect to main page
-    /*
-    echo '<script type="text/javascript">
-    window.location.pathname = \'./index.php\'
-    </script>
-    ';
-    */
+    header("Location: index.php");
   } else {
     //user or password invalid
     D("user or pass is invalid<br>\n");
-    $error = '
-    <br>
-    <h2> Имя пользователя/пароль, который вы ввели неверен </h2>
-    <br>
-    ';
-    return $error;
+    return $error_pass_incorrect;
   }
   $user->destructor();
   return 'all_ok';
 }
 
+function tryUnauth()
+{
+  setcookie('uid');
+}
+
 $error = '';
 $success = FALSE;
+
+//Try to unauth user.
+if (isset($_POST['unauth'])) {
+  $ret = tryUnauth();
+  header("Location: ./index.php");
+}
 
 // Try to auth user.
 if (isset($_POST['get_passwd'])) {

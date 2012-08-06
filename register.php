@@ -1,5 +1,5 @@
 <?php
-
+include_once("strings.php");
 include_once("common.php");
 include_once("huser.php");
 include_once("main.php");
@@ -12,6 +12,8 @@ D("register.php...<br>\n");
 //error msg if we have some error 
 function tryReg()
 {
+  global $error_name_or_pass_empty,
+      $error_name_exists, $error_serv_error;
   $error = '';
   $user = new HUser();
 
@@ -22,32 +24,15 @@ function tryReg()
   D("login = $login, pass = $password, mail = $email<br>\n");
   if (strlen($login) == 0 ||
       strlen($password) == 0) {
-    $error = '
-    <br>
-    имя пользователя или пароль не могут быть пустыми
-    <br>
-    ';
-    return $error;
+    return $error_name_or_pass_empty;
   }
 
   $ret = $user->addUser($login, $password, $email);
   if ($ret == 1) {
-    $error = '
-    <br>
-    <h2> Имя пользователя занято </h2>
-    <br>
-    ';
-    return $error;
+    return $error_name_exists;
   } else if ($ret == 2) {
-    $error = '
-    <br>
-    <h2> Ошибка сервера, попробуйте ещё раз </h2>
-    <br>
-    ';
-    return $error;
-  } else {
-    //added new user
-  }
+    return $error_serv_error;
+  }   
   $user->destructor();
   return "all_ok";
 }
