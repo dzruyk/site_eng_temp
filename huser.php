@@ -115,10 +115,19 @@ class HUser {
     $this->db->execute("INSERT INTO cookies (uid, cookie) VALUES ('" .
         $uid . "', '" . $ncookie . "')");
   }
-
-  public function checkUserCookie($user, $pass)
+  
+  //check cookie, if valid returns uid
+  //if no cookie - FALSE
+  public function checkUserCookie($cookie)
   {
+    $resp = $this->db->execute("SELECT uid FROM cookies WHERE cookie='" . $cookie . "'");
     //FIXME: STUB
+    if ($resp->recordCount() < 1) {
+      D("check user cookie failed<br>\n");
+      return FALSE;
+    }
+    $result = $resp->fetchRow();
+    return $result[0];
   }
 
   public function hasRole($roleNeed)
@@ -126,9 +135,19 @@ class HUser {
     //FIXME: STUB
   }
 
-  public function getInfoHTML()
+  //try to get some info about user
+  // return FALSE if cant find user
+  // return str with description otherwise
+  public function getInfoHTML($uid)
   {
-    //FIXME: STUB
+    $this->db->execute("SELECT uname, score FROM users WHERE uid='" . $uid . "'");
+    if ($resp->recordCount() < 1) {
+      D("get info HTML failed! this is should not happened<br>\n");
+      return FALSE;
+    }
+    $result = $resp->fetchRow();
+
+    return "<br>$result[0] <br> score=$result[1]";
   }
   
   //FIXME: this function rly usefull?
