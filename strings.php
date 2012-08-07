@@ -1,7 +1,22 @@
 <?php
 
 $quest_form = '
+<form method="POST" name="q1_form" action="quests.php">
+<br>
+1) 2 * 2 = 
+<br>
+<input type="text" value="" name="q1">
+<input type="submit" value="send" name="get_answer">
+</form>
 
+<br>
+<br>
+1) 2  + 2 * 2 = 
+<br>
+<input type="text" value="" name="q2">
+<input type="submit" value="send" name="get_answer">
+</form>
+<br>
 ';
 
 $main_description = '

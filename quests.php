@@ -13,8 +13,17 @@ include_once("strings.php");
 
 D("building quests...<br>\n");
 
-function validate_quest()
+
+//try validate quest tasks, return error message if fail
+//if success - returns all_ok, updates user stats in table
+function try_validate_quest()
 {
+  $_POST[''];
+}
+
+
+if (isset($_POST['get_answer'])) {
+  $err = try_validate_quest();
 
 }
 
