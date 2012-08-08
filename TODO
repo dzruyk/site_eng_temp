@@ -1,13 +1,10 @@
 Need to do:
 1) sql filters
-2) some classess
-4) main context
 5) and many many more...
 
 7) in final realise need to send confirm message on registered user email
 8) SQL INJECTION WARNING!
 12) must check is cookie unique(we need to check hash collisions)
-13) validate quest function
-14) simple test quest tasks need to add
 15) result table build function
+16) special auth function(for restrict access to some parts of site without redirrect)
 
