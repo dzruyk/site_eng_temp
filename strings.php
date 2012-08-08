@@ -3,17 +3,21 @@
 $quest_form = '
 <form method="POST" name="q1_form" action="quests.php">
 <br>
-1) 2 * 2 = 
+1) 2 * 2 = (25 points)
 <br>
-<input type="text" value="" name="q1">
+<input type="text" value="" name="answer">
+<input type="hidden" name="1">
 <input type="submit" value="send" name="get_answer">
 </form>
 
 <br>
 <br>
-1) 2  + 2 * 2 = 
+
+<form method="POST" name="q2_form" action="quests.php">
+1) 2  + 2 * 2 = (40 points)
 <br>
-<input type="text" value="" name="q2">
+<input type="text" value="" name="answer">
+<input type="hidden" name="2">
 <input type="submit" value="send" name="get_answer">
 </form>
 <br>
@@ -29,6 +33,18 @@ $site_devs = '
 <br>
 Dz.lnly lonely dot ruyk at mail dot ru
 <br>
+';
+
+$error_task_already_done = '
+<br>
+<h2> Вы уже давали ответ на этот вопрос </h2>
+<br>
+';
+
+$error_wrong_answer = '
+    <br>
+    <h2> ответ не верный </h2>
+    <br>
 ';
 
 $error_pass_incorrect = '

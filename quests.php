@@ -16,16 +16,64 @@ D("building quests...<br>\n");
 
 //try validate quest tasks, return error message if fail
 //if success - returns all_ok, updates user stats in table
+$answers = array (
+  "1" => "4",
+  "2" => "6"
+);
+
+$points = array (
+  "1" => "25",
+  "2" => "40",
+);
+
+function try_update_score($quest_num)
+{
+  global $points, $error_task_already_done;
+
+  $user = new HUser();
+  D("try to update score...<br>\n");
+  //this is should not happen
+  if (isset($_COOKIE['uid']) == FALSE)
+    die();
+  $cookie = $_COOKIE['uid'];
+
+  $uid = $user->checkUserCookie($cookie);
+  if ($uid == FALSE)
+    die();
+
+  if ($user->updateScore($uid, $quest_num, $points[$quest_num]) == FALSE) {
+    return $error_task_already_done;
+  }
+
+  return 'all_ok';
+}
+
 function try_validate_quest()
 {
-  $_POST[''];
+  global $answers, $error_wrong_answer;
+  
+  D("===================================<br>\n");
+  foreach ($_POST as $key => $item) {
+    echo "$key => $item";
+    echo "<br>\n";
+  }
+  D("===================================<br>\n");
+
+
+  foreach ($answers as $key => $item) {
+    if (isset($_POST[$key])) {
+      if ($_POST['answer'] == $item)
+        return try_update_score($key);
+      else {
+        D("answer error, got = " . $_POST['answer'] .
+	" need = $item <br>\n");
+        return $error_wrong_answer;
+      }
+    }
+  }
 }
 
-
-if (isset($_POST['get_answer'])) {
-  $err = try_validate_quest();
-
-}
+$err = try_validate_quest();
 
 $main = new MainPage();
 
@@ -40,7 +88,10 @@ $main->print_auth_bar();
 
 $main->print_body();
 
-$payload = $quest_form;
+if ($err != 'all_ok')
+	$payload = $err . $quest_form;
+else
+	$payload = $quest_form;
 
 $main->set_payload($payload);
 

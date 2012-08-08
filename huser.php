@@ -135,23 +135,67 @@ class HUser {
     //FIXME: STUB
   }
 
+  public function updateScore($uid, $qid, $points)
+  {
+    $resp = $this->db->execute("SELECT * FROM completed_quests WHERE uid='" . $uid . "' AND qid='" . $qid . "'"); 
+    if ($resp->recordCount() > 0) {
+      D("quest already done...<br>\n");
+      return FALSE;
+    }
+    
+    $resp = $this->db->execute("INSERT into completed_quests 
+    (uid, qid) VALUES ('" . $uid . "', '" . $qid . "')");
+    
+    //next we need update user info in main table
+    $cur_points = $this->getUserPoints($uid);
+
+    $points += $cur_points;
+
+    $resp = $this->db->execute("UPDATE users SET score='"
+    . $points . "' WHERE uid='" . $uid ."'");
+    
+    return TRUE;
+  }
+  
+
+  public function getUserName($uid)
+  {
+    $resp = $this->db->execute("SELECT uname FROM users WHERE uid='" . $uid . "'");
+    if ($resp->recordCount() < 1) {
+      D("get User name failed! this is should not happened<br>\n");
+      return FALSE;
+    }
+    $result = $resp->fetchRow();
+    
+    return $result[0];
+  }
+
+  public function getUserPoints($uid)
+  {
+    $resp = $this->db->execute("SELECT score FROM users WHERE uid='" . $uid . "'");
+    if ($resp->recordCount() < 1) {
+      D("get user points failed! this is should not happened<br>\n");
+      return FALSE;
+    }
+    $result = $resp->fetchRow();
+
+    return $result[0];
+  }
+
   //try to get some info about user
   // return FALSE if cant find user
   // return str with description otherwise
   public function getInfoHTML($uid)
   {
-    $resp = $this->db->execute("SELECT uname, score FROM users WHERE uid='" . $uid . "'");
-    if ($resp->recordCount() < 1) {
-      D("get info HTML failed! this is should not happened<br>\n");
-      return FALSE;
-    }
-    $result = $resp->fetchRow();
-
     return "<br>
     <ul>
-    <li> <h2>Здравствуй, $result[0]</h2>
-    <li> <h2> Твой счёт $result[1] </h2>
+    <li> <h2>Здравствуй, ". $this->getUserName($uid) ."</h2>
+    <li> <h2> Твой счёт " . $this->getUserPoints($uid) . "</h2>
     </ul>";
+  }
+  public function buildResultTable()
+  {
+    //FIXME: STUB!
   }
   
   //FIXME: this function rly usefull?
